@@ -1,0 +1,8 @@
+.pesquisac {
+    top: 50%;
+	bottom: 50%;
+    width: 70%;
+    margin-top: -9em; /*set to a negative number 1/2 of your height*/
+    margin-bottom: -15em; /*set to a negative number 1/2 of your width*/
+    position: fixed;
+}

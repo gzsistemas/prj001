@@ -1,0 +1,61 @@
+{
+    "prepare_queue": {
+        "installed": [],
+        "uninstalled": []
+    },
+    "config_munge": {
+        "files": {}
+    },
+    "installed_plugins": {
+        "cordova-plugin-media-capture": {
+            "PACKAGE_NAME": "br.com.gzsistemas.flashvenda"
+        },
+        "cordova-plugin-contacts": {
+            "PACKAGE_NAME": "br.com.gzsistemas.flashvenda"
+        },
+        "cordova-plugin-device-motion": {
+            "PACKAGE_NAME": "br.com.gzsistemas.flashvenda"
+        },
+        "cordova-plugin-device-orientation": {
+            "PACKAGE_NAME": "br.com.gzsistemas.flashvenda"
+        },
+        "cordova-plugin-file-transfer": {
+            "PACKAGE_NAME": "br.com.gzsistemas.flashvenda"
+        },
+        "cordova-plugin-geolocation": {
+            "PACKAGE_NAME": "br.com.gzsistemas.flashvenda"
+        },
+        "cordova-plugin-globalization": {
+            "PACKAGE_NAME": "br.com.gzsistemas.flashvenda"
+        },
+        "cordova-plugin-inappbrowser": {
+            "PACKAGE_NAME": "br.com.gzsistemas.flashvenda"
+        },
+        "cordova-plugin-media": {
+            "PACKAGE_NAME": "br.com.gzsistemas.flashvenda"
+        },
+        "cordova-plugin-network-information": {
+            "PACKAGE_NAME": "br.com.gzsistemas.flashvenda"
+        },
+        "cordova-plugin-splashscreen": {
+            "PACKAGE_NAME": "br.com.gzsistemas.flashvenda"
+        },
+        "cordova-plugin-statusbar": {
+            "PACKAGE_NAME": "br.com.gzsistemas.flashvenda"
+        },
+        "cordova-plugin-vibration": {
+            "PACKAGE_NAME": "br.com.gzsistemas.flashvenda"
+        },
+        "cordova-plugin-whitelist": {
+            "PACKAGE_NAME": "br.com.gzsistemas.flashvenda"
+        }
+    },
+    "dependent_plugins": {
+        "cordova-plugin-file": {
+            "PACKAGE_NAME": "br.com.gzsistemas.flashvenda"
+        },
+        "cordova-plugin-compat": {
+            "PACKAGE_NAME": "br.com.gzsistemas.flashvenda"
+        }
+    }
+}

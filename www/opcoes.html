@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>GZ Cloud - Flash de Vendas</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Avant">
+    <meta name="author" content="The Red Team">
+
+    <!-- <link href="less/styles.less" rel="stylesheet/less" media="all">  -->
+    <link rel="stylesheet" href="css/styles.min.css?=113">
+    <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600' rel='stylesheet' type='text/css'>
+    <link href='demo/variations/default.css' rel='stylesheet' type='text/css' media='all' id='styleswitcher'>
+    <link href='demo/variations/default.css' rel='stylesheet' type='text/css' media='all' id='headerswitcher'>
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries. Placeholdr.js enables the placeholder attribute -->
+    <!--[if lt IE 9]>
+        <link rel="stylesheet" href="css/ie8.css">
+		<script type="text/javascript" src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+		<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/respond.js/1.1.0/respond.min.js"></script>
+        <script type="text/javascript" src="plugins/charts-flot/excanvas.min.js"></script>
+	<![endif]-->
+
+    <!-- The following CSS are included as plugins and can be removed if unused-->
+
+    <link rel='stylesheet' type='text/css' href="js/ui/jquery-ui.min.css">
+    <link rel='stylesheet' type='text/css' href='plugins/form-toggle/toggles.css' />
+    <link rel='stylesheet' type='text/css' href="css/jquery.toast.css">
+    <link rel='stylesheet' type='text/css' href='plugins/codeprettifier/prettify.css' />
+</head>
+
+<body>
+    <header class="navbar navbar-inverse navbar-fixed-top" role="banner">
+        <a id="leftmenu-trigger" class="tooltips" data-toggle="tooltip" data-placement="right" title="" data-original-title="Abrir/fechar menu"></a>
+
+        <div class="navbar-header pull-left">
+            <a class="navbar-brand margin-left" style="margin-left:12px"></a>
+        </div>
+
+        <ul class="nav navbar-nav pull-right toolbar">
+            <h5 class="margin-top margin-bottom" style="margin-left:12px;margin-right:12px;color:#fff;" id="txt-servidor"></h5>
+        </ul>
+    </header>
+
+    <div id="page-container">
+        <nav id="page-leftbar" role="navigation">
+            <ul class="acc-menu" id="sidebar">
+                <li><a href="flash.html"><i class="fa fa-home"></i> <span>Dashboard</span></a></li>
+                <li><a href="opcoes.html"><i class="fa fa-gear"></i> <span>Opções</span></a></li>
+                <li><a href="sobre.html"><i class="fa fa-info"></i> <span>Sobre</span></a></li>
+                <li><a href="logout.html"><i class="fa fa-sign-out"></i> <span>Sair</span></a></li>
+            </ul>
+        </nav>
+
+        <div id="page-content">
+            <div id='wrap'>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="panel panel-primary">
+                                <div class="panel panel-blue">
+                                    <div class="panel-heading">
+                                        <h4>Opções</h4>
+                                    </div>
+                                    <div class="panel-body">
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <div class="col-md-2">
+                                                    <h3> Limpar dados </h3>
+                                                </div>
+                                                <div class="col-md-8">
+                                                    <p> Ao pressionar o botão seguinte, os dados referentes ao endereço do seu servidor, seu usuário de login, entre outros, serão limpos do sistema. Nenhuma configuração interna será alterada. </p>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <input type="button" class="btn btn-block btn-success" id="btn-limpardados" value="Limpar dados" />
+                                                </div>
+                                            </div>
+                                            <hr />
+                                            <div class="row">
+                                                <div class="col-md-2">
+                                                    <h3> Meta local </h3>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <p> Defina o padrão da meta de vendas local. Esta opção não anula a meta de vendas da matriz. </p>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="form-group">
+                                                        <div class="col-md-2">
+                                                            <input type="number" min="0" class="form-control" id="txt-meta-local" placeholder="Meta local">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="col-md-2">
+                                                        <input type="button" class="btn btn-block btn-success" id="btn-metalocal" value="Aplicar" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <hr />
+                                            <div class="row">
+                                                <div class="col-md-2">
+                                                    <h3> Inicialização </h3>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <p> Defina como você deseja que o GZ Flash de Vendas inicialize. Você pode optar por uma verificação automática dos dados do dia ou simplesmente ocultar tudo. Esta configuração é válida somente para este dispositivo. </p>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="form-group">
+                                                        <div class="col-md-2">
+                                                            <input type="number" min="0" class="form-control" id="txt-loja" placeholder="Número da loja">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <div class="col-md-2">
+                                                            <select class="form-control" id="sel-inicializacao">
+														<option value="SIL">Inicialização silenciosa</option>
+														<option value="DIA">Iniciar com o dia</option>
+														<option value="SEM">Últimos 7 dias</option>
+														<option value="MES">Ultimos 31 dias</option>
+													</select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <input type="button" class="btn btn-block btn-success" id="btn-inicializacao" value="Aplicar" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- container -->
+            </div>
+            <!--wrap -->
+        </div>
+        <!-- page-content -->
+
+        <footer role="contentinfo">
+            <div class="clearfix">
+                <ul class="list-unstyled list-inline">
+                    <li>GZ Sistemas &copy; 2017</li>
+                    <button class="pull-right btn btn-inverse-alt btn-xs hidden-print" id="back-to-top"><i class="fa fa-arrow-up"></i></button>
+                </ul>
+            </div>
+        </footer>
+
+    </div>
+    <!-- page-container -->
+
+    <!--
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+
+<script>!window.jQuery && document.write(unescape('%3Cscript src="js/jquery-1.10.2.min.js"%3E%3C/script%3E'))</script>
+<script type="text/javascript">!window.jQuery.ui && document.write(unescape('%3Cscript src="js/jqueryui-1.10.3.min.js'))</script>
+-->
+
+    <script type='text/javascript' src='js/jquery-1.10.2.min.js'></script>
+    <script type='text/javascript' src="js/jquery.toast.js"></script>
+    <script type='text/javascript' src='js/bootstrap.min.js'></script>
+    <script type='text/javascript' src='js/enquire.js'></script>
+    <script type='text/javascript' src='js/jquery.cookie.js'></script>
+    <script type='text/javascript' src='js/jquery.nicescroll.min.js'></script>
+    <script type='text/javascript' src='js/moment.js'></script>
+    <script type='text/javascript' src='js/util.js'></script>
+    <script type='text/javascript' src='js/opcoes.js'></script>
+    <script type='text/javascript' src='js/versao.js'></script>
+    <script type='text/javascript' src='plugins/codeprettifier/prettify.js'></script>
+    <script type='text/javascript' src='plugins/form-toggle/toggle.min.js'></script>
+    <script type='text/javascript' src='js/application.js'></script>
+</body>
+
+</html>

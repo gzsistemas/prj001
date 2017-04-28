@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>GZ Cloud - Flash de Vendas</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Avant">
+    <meta name="author" content="The Red Team">
+
+    <!-- <link href="less/styles.less" rel="stylesheet/less" media="all">  -->
+    <link rel="stylesheet" href="css/styles.min.css?=113">
+    <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600' rel='stylesheet' type='text/css'>
+    <link href='demo/variations/default.css' rel='stylesheet' type='text/css' media='all' id='styleswitcher'>
+    <link href='demo/variations/default.css' rel='stylesheet' type='text/css' media='all' id='headerswitcher'>
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries. Placeholdr.js enables the placeholder attribute -->
+    <!--[if lt IE 9]>
+        <link rel="stylesheet" href="css/ie8.css">
+		<script type="text/javascript" src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+		<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/respond.js/1.1.0/respond.min.js"></script>
+        <script type="text/javascript" src="plugins/charts-flot/excanvas.min.js"></script>
+	<![endif]-->
+
+    <!-- The following CSS are included as plugins and can be removed if unused-->
+
+    <link rel='stylesheet' type='text/css' href="css/jquery.toast.css">
+    <link rel='stylesheet' type='text/css' href="js/ui/jquery-ui.min.css">
+    <link rel='stylesheet' type='text/css' href='plugins/charts-morrisjs/morris.css' />
+    <link rel='stylesheet' type='text/css' href='plugins/codeprettifier/prettify.css' />
+</head>
+
+<body onload="onLoad()">
+    <header class="navbar navbar-inverse navbar-fixed-top" role="banner">
+        <a id="leftmenu-trigger" class="tooltips" data-toggle="tooltip" data-placement="right" title="" data-original-title="Abrir/fechar menu"></a>
+
+        <div class="navbar-header pull-left">
+            <a class="navbar-brand margin-left" style="margin-left:12px"></a>
+        </div>
+
+        <ul class="nav navbar-nav pull-right toolbar">
+            <h5 class="margin-top margin-bottom" style="margin-left:12px;margin-right:12px;color:#fff;" id="txt-servidor"></h5>
+        </ul>
+    </header>
+
+    <div id="page-container">
+        <nav id="page-leftbar" role="navigation">
+            <ul class="acc-menu" id="sidebar">
+                <li><a href="flash.html"><i class="fa fa-home"></i> <span>Dashboard</span></a></li>
+                <li><a href="opcoes.html"><i class="fa fa-gear"></i> <span>Opções</span></a></li>
+                <li><a href="sobre.html"><i class="fa fa-info"></i> <span>Sobre</span></a></li>
+                <li><a href="logout.html"><i class="fa fa-sign-out"></i> <span>Sair</span></a></li>
+            </ul>
+        </nav>
+
+        <div id="page-content">
+            <div id='wrap'>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="panel panel-primary">
+                                <div class="panel-body">
+                                    <div class="form-group">
+                                        <div class="form-group">
+                                            <div class="col-md-2">
+                                                <label for="txt-loja">Loja</label>
+                                                <input type="number" min="0" class="form-control" id="txt-loja" maxlength="2" placeholder="Ex: 1">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-md-2">
+                                                <label for="txt-data-inicial">Data inicial</label>
+                                                <input type="text" class="form-control" id="txt-data-inicial" maxlength="10" placeholder="Ex: DD/MM/YYYY">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-md-2">
+                                                <label for="txt-data-final">Data final</label>
+                                                <input type="text" class="form-control" id="txt-data-final" maxlength="10" placeholder="Ex: DD/MM/YYYY">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-md-3">
+                                                <label for="meta">Meta local</label>
+                                                <div id="meta" class="input-group">
+                                                    <span class="input-group-addon">R$</span>
+                                                    <input type="number" min="0" class="form-control" id="txt-meta" placeholder="Ex: 1,000.00">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-md-3">
+                                                <label for="btn-pesquisar"></label>
+                                                <input type="button" class="btn btn-block btn-primary" id="btn-pesquisar" value="Pesquisar" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div id="secao-estatisticas" style="display: none;">
+                                    <div class="panel-heading">
+                                        <h4>Estatísticas</h4>
+                                        <div class="options">
+
+                                        </div>
+                                    </div>
+                                    <div class="panel-body">
+                                        <div class="col-md-4 info-tiles tiles-info">
+                                            <div class="tiles-heading">
+                                                <div class="pull-center">Vendas até agora</div>
+                                            </div>
+                                            <div class="tiles-body">
+                                                <div class="pull-left"><i class="fa fa-money"></i></div>
+                                                <div id="princ-valor-venda" class="pull-right">R$ 0,00</div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 info-tiles tiles-alizarin">
+                                            <div class="tiles-heading">
+                                                <div class="pull-center">Clientes atendidos</div>
+                                            </div>
+                                            <div class="tiles-body">
+                                                <div class="pull-left"><i class="fa fa-users"></i></div>
+                                                <div id="princ-clientes-atendidos" class="pull-right">0</div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 info-tiles tiles-orange">
+                                            <div class="tiles-heading">
+                                                <div class="pull-center">Ticket médio</div>
+                                            </div>
+                                            <div class="tiles-body">
+                                                <div class="pull-left"><i class="fa fa-eye"></i></div>
+                                                <div id="princ-ticket-medio" class="pull-right">0</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div id="secao-caixa" style="display: none;">
+                                    <div class="panel-heading">
+                                        <h4>Vendas por caixa</h4>
+                                        <div class="options">
+                                            <ul class="nav nav-tabs">
+                                                <li class="active">
+                                                    <a href="#vendaporcaixa-grafico" data-toggle="tab">Gráfico</a>
+                                                </li>
+                                                <li>
+                                                    <a href="#vendaporcaixa-tabela" data-toggle="tab">Tabela</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="panel-body">
+                                        <div class="tab-content">
+                                            <div class="tab-pane active" id="vendaporcaixa-grafico">
+                                                <div id="venda-por-caixa"></div>
+                                            </div>
+                                            <div class="tab-pane" id="vendaporcaixa-tabela">
+                                                <table class="tabela-indicador table table-bordered table-hover table-striped">
+                                                    <thead>
+                                                        <tr>
+                                                            <th class="header-coluna">Caixa</th>
+                                                            <th class="header-coluna">Total vendido</th>
+                                                            <th class="header-coluna">Clientes atendidos</th>
+                                                            <th class="header-coluna">Ticket médio</th>
+                                                            <th class="header-coluna">Percentual</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody id="tbody-tabela-caixas">
+                                                        <tr>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div id="secao-pagamento" style="display: none;">
+                                    <div class="panel-heading">
+                                        <h4>Vendas por forma de pagamento</h4>
+                                        <div class="options">
+
+                                        </div>
+                                    </div>
+                                    <div class="panel-body">
+                                        <div class="row">
+                                            <div class="form-group">
+                                                <div class="col-md-6" style="text-align: center;">
+                                                    <div id="venda-por-fpagamento" style="width:300px;height:300px;display:inline-block;"></div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6" style="margin-top:20px;">
+                                                <table class="tabela-indicador table table-bordered table-hover table-striped">
+                                                    <thead>
+                                                        <tr>
+                                                            <th class="header-coluna">Forma de pagamento</th>
+                                                            <th class="header-coluna">Total vendido</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody id="tbody-tabela-forma-pagamento">
+                                                        <tr>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- container -->
+            </div>
+            <!--wrap -->
+        </div>
+        <!-- page-content -->
+
+        <footer role="contentinfo">
+            <div class="clearfix">
+                <ul class="list-unstyled list-inline">
+                    <li>GZ Sistemas &copy; 2017</li>
+                    <button class="pull-right btn btn-inverse-alt btn-xs hidden-print" id="back-to-top"><i class="fa fa-arrow-up"></i></button>
+                </ul>
+            </div>
+        </footer>
+
+    </div>
+    <!-- page-container -->
+
+    <!--
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+
+<script>!window.jQuery && document.write(unescape('%3Cscript src="js/jquery-1.10.2.min.js"%3E%3C/script%3E'))</script>
+<script type="text/javascript">!window.jQuery.ui && document.write(unescape('%3Cscript src="js/jqueryui-1.10.3.min.js'))</script>
+-->
+
+    <script type='text/javascript' src='js/jquery-1.10.2.min.js'></script>
+    <script type='text/javascript' src="js/jquery.toast.js"></script>
+    <script type='text/javascript' src='js/bootstrap.min.js'></script>
+    <script type='text/javascript' src='js/enquire.js'></script>
+    <script type='text/javascript' src='js/jquery.cookie.js'></script>
+    <script type='text/javascript' src='js/jquery.nicescroll.min.js'></script>
+    <script type='text/javascript' src='js/ui/jquery-ui.min.js'></script>
+    <script type='text/javascript' src='plugins/codeprettifier/prettify.js'></script>
+    <script type='text/javascript' src='plugins/charts-morrisjs/raphael.min.js'></script>
+    <script type='text/javascript' src='plugins/charts-morrisjs/morris.min.js'></script>
+    <script type='text/javascript' src='plugins/charts-chartjs/Chart.min.js'></script>
+    <script type='text/javascript' src='plugins/charts-flot/jquery.flot.min.js'></script>
+    <script type='text/javascript' src='plugins/charts-flot/jquery.flot.stack.min.js'></script>
+    <script type='text/javascript' src='plugins/charts-flot/jquery.flot.pie.min.js'></script>
+    <script type='text/javascript' src='plugins/charts-flot/jquery.flot.resize.min.js'></script>
+	<script type='text/javascript' src='plugins/bootbox/bootbox.min.js'></script>
+    <script type='text/javascript' src='js/moment.js'></script>
+    <script type='text/javascript' src='js/placeholdr.js'></script>
+    <script type='text/javascript' src='js/application.js'></script>
+    <script type='text/javascript' src='js/flash.js'></script>
+    <script type='text/javascript' src='js/util.js'></script>
+	<script type='text/javascript' src='js/logincheck.js'></script>
+</body>
+
+</html>

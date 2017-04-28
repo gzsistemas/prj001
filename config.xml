@@ -1,0 +1,63 @@
+<widget xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0" 
+        id="br.com.gzsistemas.flashvenda"
+        version="1.0.5">
+  <name>GZ Flash</name>
+  <description>Aplicativo para acompanhar os valores de vendas em tempo real</description>
+  <author href="http://gzcloud.com.br" email="suporte@gzcloud.com.br">GZ Sistemas - GZ Cloud</author>
+  <content src="index.html"/>
+  <preference name="DisallowOverscroll" value="true"/>
+  <preference name="android-minSdkVersion" value="14"/>
+  <plugin name="cordova-plugin-console" source="npm" spec="~1.0.2"/>
+  <plugin name="cordova-plugin-device" source="npm" spec="~1.1.1"/>
+  <plugin name="cordova-plugin-dialogs" source="npm" spec="~1.2.0"/>
+  <plugin name="cordova-plugin-file" source="npm" spec="~4.1.1"/>
+  <plugin name="cordova-plugin-file-transfer" source="npm" spec="~1.5.0"/>
+  <plugin name="cordova-plugin-inappbrowser" source="npm" spec="~1.3.0"/>
+  <plugin name="cordova-plugin-network-information" source="npm" spec="~1.2.0"/>
+  <plugin name="cordova-plugin-whitelist" source="npm" spec="~1.2.1"/>
+  <icon src="icon.png"/>
+  <platform name="android">
+      <icon src="www/res/icon/android/icone-ldpi.png" density="ldpi"/>
+      <icon src="www/res/icon/android/icone-mdpi.png" density="mdpi"/>
+      <icon src="www/res/icon/android/icone-hdpi.png" density="hdpi"/>
+      <icon src="www/res/icon/android/icone-xhdpi.png" density="xhdpi"/>
+      <icon src="www/res/icon/android/icone-xxhdpi.png" density="xxhdpi"/>
+      <icon src="www/res/icon/android/icone-xxxhdpi.png" density="xxxhdpi"/>
+  </platform>
+  <platform name="ios">
+    <icon src="www/res/icon/ios/icon.png" platform="ios" width="96" height="96"/>
+    <icon src="www/res/icon/ios/icon@2x.png" platform="ios" width="96" height="96"/>
+    <icon src="www/res/icon/ios/icon-40.png" platform="ios" width="96" height="96"/>
+    <icon src="www/res/icon/ios/icon-40@2x.png" platform="ios" width="96" height="96"/>
+    <icon src="www/res/icon/ios/icon-50.png" platform="ios" width="96" height="96"/>
+    <icon src="www/res/icon/ios/icon-50@2x.png" platform="ios" width="96" height="96"/>
+    <icon src="www/res/icon/ios/icon-60.png" platform="ios" width="96" height="96"/>
+    <icon src="www/res/icon/ios/icon-60@2x.png" platform="ios" width="96" height="96"/>
+    <icon src="www/res/icon/ios/icon-72.png" platform="ios" width="96" height="96"/>
+    <icon src="www/res/icon/ios/icon-72@2x.png" platform="ios" width="96" height="96"/>
+    <icon src="www/res/icon/ios/icon-76.png" platform="ios" width="96" height="96"/>
+    <icon src="www/res/icon/ios/icon-76@2x.png" platform="ios" width="96" height="96"/>
+    <icon src="www/res/icon/ios/icon-small.png" platform="ios" width="96" height="96"/>
+    <icon src="www/res/icon/ios/icon-small@2x.png" platform="ios" width="96" height="96"/>
+  </platform>
+  <platform name="wp8">
+    <icon src="www/res/icon/wp8/ApplicationIcon.png" platform="wp8" width="99" height="99"/>
+  </platform>
+  <platform name="windows">
+    <icon src="www/res/icon/windows/icone_gzflash_128x128.png" platform="windows" width="128" height="128"/>
+  </platform>
+  <access origin="*"/>
+  <allow-intent href="http://*/*"/>
+  <allow-intent href="https://*/*"/>
+  <allow-intent href="tel:*"/>
+  <allow-intent href="sms:*"/>
+  <allow-intent href="mailto:*"/>
+  <allow-intent href="geo:*"/>
+  <platform name="android">
+    <allow-intent href="market:*"/>
+  </platform>
+  <platform name="ios">
+    <allow-intent href="itms:*"/>
+    <allow-intent href="itms-apps:*"/>
+  </platform>
+</widget>

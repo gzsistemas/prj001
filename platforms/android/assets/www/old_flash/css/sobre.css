@@ -1,0 +1,27 @@
+#banner-gzsistemas{
+    width: 100%;
+}
+#tabela-dados-sobre{
+    margin-top: 20px;
+}
+.label-dado-sobre{
+    width: 50%;
+    text-align: right;
+    font-weight: bold;
+    padding-right: 7px;
+    font-size: 14pt;
+    vertical-align: top;
+}
+.dado-sobre{
+    font-size: 14pt;
+    vertical-align: top;
+}
+#secao-versao{
+    text-align: center;
+}
+#versao-nome-app{
+    font-size: 24pt;
+}
+#versao-imagem{
+    margin-top: 30px;
+}

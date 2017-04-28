@@ -1,4 +1,4 @@
-var versao = "1.0.10";
+var versao = "2.0.0";
 
 function getVer() {
     $("#versao").text("Versão " + versao);

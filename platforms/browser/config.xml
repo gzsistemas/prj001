@@ -10,6 +10,8 @@
     <description>Aplicativo para acompanhar os valores de vendas em tempo real</description>
     <author email="suporte@gzcloud.com.br" href="http://gzcloud.com.br">GZ Sistemas - GZ Cloud</author>
     <content src="index.html" />
+    <preference name="DisallowOverscroll" value="true" />
+    <preference name="android-minSdkVersion" value="14" />
     <icon src="icon.png" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
@@ -18,6 +20,4 @@
     <allow-intent href="sms:*" />
     <allow-intent href="mailto:*" />
     <allow-intent href="geo:*" />
-    <preference name="DisallowOverscroll" value="true" />
-    <preference name="android-minSdkVersion" value="14" />
 </widget>

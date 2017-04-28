@@ -1,9 +1,9 @@
-var versao = "1.0.7";
+var versao = "1.0.10";
 
-function getVer(){
-	$("#versao").text("Versão " + versao);
+function getVer() {
+    $("#versao").text("Versão " + versao);
 }
 
-$(function () {
+$(function() {
     getVer();
 });

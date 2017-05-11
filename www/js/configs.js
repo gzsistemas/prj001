@@ -6,11 +6,11 @@
  */
  var conexaoSegura = false;
 
- $('.toggles').toggles({text:{on:'SIM', off:'NÃO'}});
-
  $('#tgl-conexao-segura').on('toggle', function(e, active) {
  	conexaoSegura = active;
  });
+
+ $('.toggles').toggles({text:{on:'SIM', off:'NÃO'}});
 /*
   Definições das funções
  */

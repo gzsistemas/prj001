@@ -50,6 +50,14 @@ function onLoad() {
     $("#txt-usuario").val(usuario.nomeUsuario);
 }
 
+function configs() {
+  window.location.replace("configs.html");
+}
+
 $("#btn-login").click(function(e) {
     login();
+});
+
+$("#btn-configs").click(function (e) {
+    configs();
 });

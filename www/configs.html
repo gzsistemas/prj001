@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Prevenda - Configuração do Terminal</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Avant">
+    <meta name="author" content="The Red Team">
+    <link rel="stylesheet" href="css/styles.css">
+    <link href='plugins/form-toggle/toggles.css' rel='stylesheet' type='text/css'>
+    <link href="plugins/toastr/toastr.min.css" rel="stylesheet" type='text/css'>
+    <script type='text/javascript' src='js/jquery-1.10.2.min.js'></script>
+    <script type='text/javascript' src="js/jquery.toast.js"></script>
+    <script type='text/javascript' src='js/jquery.cookie.js'></script>
+    <script type='text/javascript' src='js/jquery.nicescroll.min.js'></script>
+    <script type='text/javascript' src='plugins/form-toggle/toggle.min.js'></script>
+</head>
+
+<body class="focusedform" onload="onLoad()">
+
+    <div class="verticalcenter">
+        <a href="index.htm"><img src="img/logo-big.png" alt="Logo" class="brand" /></a>
+        <div class="panel panel-primary">
+            <div class="panel-body">
+                <h4 class="text-center" style="margin-bottom: 25px;">Configurações</h4>
+                <form action="#" class="form-horizontal" style="margin-bottom: 0px !important;">
+                    <div class="form-group">
+                        <div class="col-sm-12 control-label">
+                            <div class="col-md-10">
+                            </span><span> Conexão segura</span>
+                            </div>
+                            <div class="col-md-2">
+                                <div id="tgl-conexao-segura" class="toggles" style="height: 20px; width: 50px;">
+                                    <div class="toggle-slide active">
+                                        <div class="toggle-inner" style="width: 80px; margin-left: 0px;">
+                                            <div class="toggle-on" style="height: 20px; width: 40px; text-align: center; text-indent: -10px; line-height: 20px;">SIM</div>
+                                            <div class="toggle-blob" style="height: 20px; width: 20px; margin-left: -10px;"></div>
+                                            <div class="toggle-off" style="height: 20px; width: 40px; margin-left: -10px; text-align: center; text-indent: 10px; line-height: 20px;">NÃO</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+            <div class="panel-footer">
+                <div class="pull-left">
+                    <input type="button" class="btn btn-block btn-danger-alt" style="padding: 5px 10px;" id="btn-cancelar" value="Cancelar" />
+                </div>
+                <div class="pull-right">
+                    <input type="button" class="btn btn-block btn-success" style="padding: 5px 10px;" id="btn-salvar" value="Salvar" />
+                </div>
+            </div>
+        </div>
+        </form>
+    </div>
+	<script type="text/javascript" src="plugins/toastr/toastr.min.js"></script>
+    <script type='text/javascript' src="js/util.js"></script>
+    <script type='text/javascript' src="js/configs.js"></script>
+</body>
+
+</html>

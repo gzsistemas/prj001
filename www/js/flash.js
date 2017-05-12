@@ -8,8 +8,19 @@ function pesquisar() {
     }
 
     toastInfoNoHide("Atualizando informações...");
+
+    var conecSeg = storage.getItem("ConecSeg");
+
+    var URL = "";
+
+    if(conecSeg == "true"){
+    	URL = "https://" + enderecoFormatado() + "/services/modulo/flash";
+    }else {
+    	URL = "http://" + enderecoFormatado() + "/services/modulo/flash";
+    }
+
     $.ajax({
-        url: "http://" + enderecoFormatado() + "/services/modulo/flash",
+        url: URL,
         data: {
             loja: $("#txt-loja").val(),
             dataInicial: $("#txt-data-inicial").val(),
@@ -45,13 +56,13 @@ function pesquisar() {
                 } else {
 
                     // Remove dados anteriores se existirem -----------------------
-                    $("#tbody-tabela-caixas").find("tr").remove(); // Remove a tabela de venda por caixa					
+                    $("#tbody-tabela-caixas").find("tr").remove(); // Remove a tabela de venda por caixa
                     $('#venda-por-caixa').empty(); // Remove o gráfico de venda por caixa
 
                     $("#tbody-tabela-forma-pagamento").find("tr").remove(); // Remove a tabela de venda por forma de pagamento
                     $("#venda-por-fpagamento").unbind();
 					$("#venda-por-fpagamento").empty(); // Remove o gráfico de venda por forma de pagamento
-					
+
 					vpagamentos = [];
 					vcaixa = [];
                     // ------------------------------------------------------------
@@ -63,7 +74,7 @@ function pesquisar() {
                     // ------------------------------------------------------------
 
 					var TEMPORARIO1 = 2016; // APENAS PARA FIM DE TESTES: AGUARDANDO CALL DO WEBSERVICE
-					
+
                     caixas.each(function(i, obj) {
                         var cxCaixa = obj.caixa;
                         var cxValorVenda = "R$ " + valorEmReais(obj.valorVenda);
@@ -88,7 +99,7 @@ function pesquisar() {
                             "caixa": "Caixa " + obj.caixa,
                             "valorvenda": obj.valorVenda.toFixed(2)
                         });
-						
+
 						TEMPORARIO1 = TEMPORARIO1 + 1; // APENAS PARA FIM DE TESTES: AGUARDANDO CALL DO WEBSERVICE
                     });
 
@@ -128,7 +139,7 @@ function pesquisar() {
 					    labels: ['Valor']
 					});
                     // ------------------------------------------------------------
-					
+
                     // Carrega gráfico de venda por forma de pagamento ------------
                     $.plot('#venda-por-fpagamento', vpagamentos, {
                         series: {

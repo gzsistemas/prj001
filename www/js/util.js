@@ -234,9 +234,9 @@ function primeiroAcesso() {
 	var msg = "<b><i> Parabéns! </i></b> Você agora pode começar a utilizar as funções que o GZ Flash te proporciona. Acompanhe agora, em real-time, as vendas de sua loja, estipule metas, etc. Comece já!<br>";
 	var msg2 = "<br><b><i> Caso precise de ajuda... </i></b> Você pode entrar em contato conosco pelo suporte@gzsistemas.com.br. Temos também telefone e você pode abrir um ticket. Confira o menu 'Sobre'.<br>";
 	var msg3 = "<br><b><i> ATENÇÃO! </i></b> É necessária a contratação do GZ Cloud ou linha Mercatto-E para utilização do PDV Mobile com integração do cadastro de produtos e gerenciamento de diversos dispositivos.";
-	
+
 	guardarInicializacao("", "SIL");
-	
+
 	if(true) {
 		bootbox.alert({
 			title: "Bem-vindo ao GZ Flash!",
@@ -244,7 +244,8 @@ function primeiroAcesso() {
 		});
 	}
 }
-
+/*
 $(function() {
     $("#txt-servidor").text(enderecoFormatado());
 });
+ */

@@ -61,10 +61,10 @@ function pesquisar() {
 
                     $("#tbody-tabela-forma-pagamento").find("tr").remove(); // Remove a tabela de venda por forma de pagamento
                     $("#venda-por-fpagamento").unbind();
-					$("#venda-por-fpagamento").empty(); // Remove o gráfico de venda por forma de pagamento
+					          $("#venda-por-fpagamento").empty(); // Remove o gráfico de venda por forma de pagamento
 
-					vpagamentos = [];
-					vcaixa = [];
+          					vpagamentos = [];
+          					vcaixa = [];
                     // ------------------------------------------------------------
 
                     // Carrega as divs de estatísticas ----------------------------
@@ -73,7 +73,7 @@ function pesquisar() {
                     $("#princ-ticket-medio").text("R$ " + valorEmReais(ticketMedio));
                     // ------------------------------------------------------------
 
-					var TEMPORARIO1 = 2016; // APENAS PARA FIM DE TESTES: AGUARDANDO CALL DO WEBSERVICE
+					          var TEMPORARIO1 = 2016; // APENAS PARA FIM DE TESTES: AGUARDANDO CALL DO WEBSERVICE
 
                     caixas.each(function(i, obj) {
                         var cxCaixa = obj.caixa;

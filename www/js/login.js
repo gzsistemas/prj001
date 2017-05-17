@@ -18,7 +18,7 @@ function login() {
     setEnderecoServidor($("#txt-cnpj").val());
     toastInfoNoHide("Aguarde... Fazendo login.");
 
-
+    var storage = window.localStorage;
     var conecSeg = storage.getItem("ConecSeg");
 
     var URL = "";

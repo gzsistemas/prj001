@@ -8,7 +8,7 @@ function pesquisar() {
     }
 
     toastInfoNoHide("Atualizando informações...");
-
+    var storage = window.localStorage;
     var conecSeg = storage.getItem("ConecSeg");
 
     var URL = "";
@@ -184,7 +184,7 @@ function labelFormatter(label, series) {
     return "<div style='font-size:10pt;text-align:center padding:2px;color:white;background-color:rgba(0, 0, 0, 0.5);padding:2px 2px 2px 2px;'>" + label + "</div>";
 }
 
-function onLoad() {   
+function onLoad() {
     $("#txt-servidor").text(enderecoFormatado());
     // Exibe endereço do usuário
     var usuario = getUsuario();

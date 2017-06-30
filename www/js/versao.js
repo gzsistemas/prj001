@@ -1,4 +1,4 @@
-var versao = "2.0.2";
+var versao = "3.0.0";
 
 function getVer() {
     $("#versao").text("Versão " + versao + " GZ Flash");

@@ -3,14 +3,16 @@ $(function() {
 });
 
 function carregaOpcoes() {
-    $("#txt-meta-local").val(obterMeta());
-    $("#txt-loja").val(obterInicializacao("loja"));
-    $("#sel-inicializacao").val(obterInicializacao("tipo"));
+    //$("#txt-meta-local").val(getMeta());
+    $("#txt-loja").val(getInicializacao("loja"));
+    $("#sel-inicializacao").val(getInicializacao("tipo"));
 }
 
+/*
 $("#txt-meta, #txt-loja, #txt-meta-local").keypress(function() {
     checarNegativo($("#txt-meta").val());
 });
+*/
 
 /*
 // Botão APLICAR da limpeza de dados
@@ -24,12 +26,13 @@ $("#btn-limpardados").click(function(e) {
 // Botão APLICAR da configuração de meta de vendas local
 */
 $("#btn-metalocal").click(function(e) {
-    guardarMeta($("#txt-meta-local").val()); // Salva meta local
-
     if (checarVazio($("#txt-meta-local").val())) { // Checa se a meta é zero
         toastInfo("Salvo meta local zero.");
+        var zero = 0;
+        setMeta(zero);
     } else {
         toastSuccess("Meta local definida com sucesso!");
+        setMeta($("#txt-meta-local").val()); // Salva meta local
     }
 });
 
@@ -51,7 +54,9 @@ $("#btn-inicializacao").click(function(e) {
     }
 
     if (val == true) { // Se for válido, grava
-        guardarInicializacao($("#txt-loja").val(), $("#sel-inicializacao").val());
+        setInicializacao($("#txt-loja").val(), $("#sel-inicializacao").val());
+        setEmpresa($("#txt-loja").val());
         toastSuccess("Configuração aplicada com sucesso!");
+        window.location.href = "flash.html";        
     }
 });

@@ -36,7 +36,7 @@ function login() {
      procotolo = protocolo + "s";
     }
     protocolo = protocolo + "://";
-    var URL = protocolo + url + "/" + "/services/mobile/login?token=" + token;
+    var URL = protocolo + url + "/services/mobile/login?token=" + token;
   }
   $.ajax({
     url:URL,

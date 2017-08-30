@@ -89,7 +89,7 @@ function salvar() {
       if(user == null){
         guardar();
         login();
-      } else{
+      } else{      
         confirmar();
       }
     }

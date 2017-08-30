@@ -1,7 +1,8 @@
 /*
 	Util.JS
-	Último update: 25/04/2017
+	Último update: 14/08/2017
 */
+
 toastr.options = {
 	  "closeButton": false,
 	  "debug": false,
@@ -20,24 +21,6 @@ toastr.options = {
 	  "hideMethod": "fadeOut"
 }
 
-function getEnderecoServidor() {
-    var storage = window.localStorage;
-    var enderecoServidor = storage.getItem("endereco-servidor");
-    return enderecoServidor;
-}
-function setEnderecoServidor(enderecoServidor) {
-    var storage = window.localStorage;
-    storage.setItem("endereco-servidor", enderecoServidor);
-}
-function guardarUsuario(usuario){
-    var storage = window.localStorage;
-    storage.setItem("usuario", JSON.stringify(usuario));
-}
-function getUsuario(){
-    var storage = window.localStorage;
-    var usuario = JSON.parse(storage.getItem("usuario")); // Pass a key name to get its value.
-    return usuario;
-}
 function myToast(tipo, mensagem) {
 	if(tipo == "success") {
 		toastr.success(mensagem);
@@ -74,73 +57,7 @@ function toastWarning(mensagem) {
     myToast("warning", mensagem);
 }
 
-function validarCNPJ(cnpj) {
-    cnpj = cnpj.replace(/[^\d]+/g,'');
-
-    if(cnpj == '') return false;
-
-    if (cnpj.length != 14)
-        return false;
-
-    // Elimina CNPJs invalidos conhecidos
-    if (cnpj == "00000000000000" ||
-        cnpj == "11111111111111" ||
-        cnpj == "22222222222222" ||
-        cnpj == "33333333333333" ||
-        cnpj == "44444444444444" ||
-        cnpj == "55555555555555" ||
-        cnpj == "66666666666666" ||
-        cnpj == "77777777777777" ||
-        cnpj == "88888888888888" ||
-        cnpj == "99999999999999")
-        return false;
-
-    // Valida DVs
-    tamanho = cnpj.length - 2;
-    numeros = cnpj.substring(0,tamanho);
-    digitos = cnpj.substring(tamanho);
-    soma = 0;
-    pos = tamanho - 7;
-    for (i = tamanho; i >= 1; i--) {
-      soma += numeros.charAt(tamanho - i) * pos--;
-      if (pos < 2)
-            pos = 9;
-    }
-    resultado = soma % 11 < 2 ? 0 : 11 - soma % 11;
-    if (resultado != digitos.charAt(0))
-        return false;
-
-    tamanho = tamanho + 1;
-    numeros = cnpj.substring(0,tamanho);
-    soma = 0;
-    pos = tamanho - 7;
-    for (i = tamanho; i >= 1; i--) {
-      soma += numeros.charAt(tamanho - i) * pos--;
-      if (pos < 2)
-            pos = 9;
-    }
-    resultado = soma % 11 < 2 ? 0 : 11 - soma % 11;
-    if (resultado != digitos.charAt(1))
-          return false;
-
-    return true;
-
-}
-
-function servidorGZCloud(cnpj){
-    return cnpj+".gzcloud.com.br";
-}
-
-function enderecoFormatado(){
-    var endereco = getEnderecoServidor();
-    if(validarCNPJ(endereco)){
-        return endereco+".gzcloud.com.br";
-    }else{
-        return endereco;
-    }
-}
-
-function obterDiasSemana(tipo){
+function getDiasSemana(tipo){
 	if(tipo == "cp") { // CP = RETORNA DIAS COMPLETO
 		return ["Domingo", "Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado"];
 	} else if(tipo == "sc") { // SC = RETORNA DIAS SUPER CURTO
@@ -150,7 +67,7 @@ function obterDiasSemana(tipo){
 	}
 }
 
-function obterNomeMeses(tipo){
+function getNomeMeses(tipo){
 	if(tipo == 'cp') {
 		return ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"];
 	} else if(tipo == 'ct') {
@@ -158,38 +75,40 @@ function obterNomeMeses(tipo){
 	}
 }
 
-function guardarMeta(meta){
-    var storage = window.localStorage;
-    storage.setItem("meta", JSON.stringify(meta));
+function setMeta(meta){
+	var storage = window.localStorage;
+	storage.setItem("meta", JSON.stringify(meta));
 }
 
-function obterMeta(){
-    var storage = window.localStorage;
-    var meta = JSON.parse(storage.getItem("meta"));
-    return meta;
+function getMeta(){
+	var storage = window.localStorage;
+	var meta = JSON.parse(storage.getItem("meta"));
+	return meta;
 }
 
-function guardarInicializacao(loja, tipo){
-    var storage = window.localStorage;
-    storage.setItem("loja-init", JSON.stringify(loja));
+function setInicializacao(loja, tipo){
+	var storage = window.localStorage;
+ 	storage.setItem("loja-init", JSON.stringify(loja));
 	storage.setItem("tipo-init", JSON.stringify(tipo));
 }
 
-function obterInicializacao(obj){
-    var storage = window.localStorage;
+function getInicializacao(obj){
+	var storage = window.localStorage;
 	if(obj == "loja"){
-		return JSON.parse(storage.getItem("loja-init"));
+		var loja = JSON.parse(storage.getItem("loja-init"));
+		return loja;
 	} else if(obj == "tipo"){
-	    return JSON.parse(storage.getItem("tipo-init"));
+		var tipo = JSON.parse(storage.getItem("tipo-init"));
+		return tipo;
 	}
 }
 
-function obterDataAtual(){
+function getDataAtual(){
 	var data = new Date();
 	return String(("0" + data.getDate()).slice(-2)) + "/" + ("0" + (data.getMonth() + 1)).slice(-2) + "/" + String(data.getFullYear());
 }
 
-function obterDias(quantidade){
+function getDias(quantidade){
 	return moment().subtract('days', quantidade).format('DD/MM/YYYY');
 }
 
@@ -209,29 +128,12 @@ function checarNegativo(valor){
     }
 }
 
-function guardarComanda(com){
-    var storage = window.localStorage;
-    storage.setItem("comanda", JSON.stringify(com));
-}
-
-function obterComanda(){
-    var storage = window.localStorage;
-	return JSON.parse(storage.getItem("comanda"));
-}
-
 function removerAspas(strg){
 	var str = strg.replace(/"/g, "");
 	var string = str.replace(/^\s+|\s+$/g, "");
 	return string;
 }
 
-function removerConcha(strg){
-	//var string = str.replace(/"/g, "");
-	//var string = str.replace(/"/g, "");
-	var str = strg.replace(/[]/g, "");
-	var string = str.replace(/"/g, "");
-	return string;
-}
 // Criação das novas funções que realizam o novo fluxo de login
 function getUser(){
 	var storage = window.localStorage;
@@ -299,6 +201,28 @@ function setSSL(ssl){
 	storage.setItem("ssl", JSON.stringify(ssl));
 }
 
+function getDataInicial(){
+	var storage = window.localStorage;
+	var data_inicial = JSON.parse(storage.getItem("data_inicial"));
+	return data_inicial;
+}
+
+function setDataInicial(data){
+	var storage = window.localStorage;
+	storage.setItem("data_inicial", JSON.stringify(data));
+}
+
+function getDataFinal(){
+	var storage = window.localStorage;
+	var data_final = JSON.parse(storage.getItem("data_final"));
+	return data_final;
+}
+
+function setDataFinal(data){
+	var storage = window.localStorage;
+	storage.setItem("data_final", JSON.stringify(data));
+}
+
 function logout(){
 	var storage = window.localStorage;
 	storage.removeItem("user");
@@ -318,8 +242,35 @@ function gerarToken(){
 	return token;
 }
 
-// função a parte que identifica e demonstra erros na tela
-window.addEventListener( 'error', function( event ){
+function sleep(milliseconds) {
+  var start = new Date().getTime();
+  for (var i = 0; i < 1e7; i++) {
+    if ((new Date().getTime() - start) > milliseconds){
+      break;
+    }
+  }
+}
+
+/*
+	 Error Catch // -- Produção --
+
+	 Dados requisitados:
+	 - Nenhum;
+
+	 Dados resultantes:
+	 - Nenhum;
+
+	 OBS: Método retorna erros no console;
+*/
+
+window.addEventListener('error', function(event){
+
+		console.log("Erro de JS:");
+		console.log("Mensagem: " + event.message);
+		console.log("Em: " + event.filename);
+		console.log("Linha: " + event.lineno);
+
+		/*
     var boxError = document.createElement( 'div' );
     boxError.className  = 'box-error';
 
@@ -329,6 +280,8 @@ window.addEventListener( 'error', function( event ){
     boxError.innerHTML += '<p>Linha: '+ event.lineno +'</p>';
 
     document.body.appendChild( boxError );
+		*/
+
 		toastError("Ooops... Algo deu errado!");
     return false;
 });

@@ -1,6 +1,6 @@
 <widget xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0" 
         id="br.com.gzsistemas.flashvenda"
-        version="2.0.2">
+        version="3.0.0">
   <name>GZ Flash</name>
   <description>Aplicativo para acompanhar os valores de vendas em tempo real</description>
   <author href="http://gzcloud.com.br" email="suporte@gzcloud.com.br">GZ Sistemas - GZ Cloud</author>

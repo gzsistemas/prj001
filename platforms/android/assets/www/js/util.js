@@ -1,77 +1,40 @@
 /*
 	Util.JS
-	Último update: 01/01/2017
+	Último update: 14/08/2017
 */
-function getEnderecoServidor() {
-    //var storage = window.localStorage;
-    //var value = storage.getItem(key); // Pass a key name to get its value.
-    //storage.setItem(key, value) // Pass a key name and its value to add or update that key.
-    //storage.removeItem(key) // Pass a key name to remove that key from storage.
-    var storage = window.localStorage;
-    var enderecoServidor = storage.getItem("endereco-servidor"); // Pass a key name to get its value.
-    return enderecoServidor;
-}
 
-function setEnderecoServidor(enderecoServidor) {
-    var storage = window.localStorage;
-    storage.setItem("endereco-servidor", enderecoServidor);
-}
-
-function guardarUsuario(usuario) {
-    var storage = window.localStorage;
-    storage.setItem("usuario", JSON.stringify(usuario));
-}
-
-function getUsuario() {
-    var storage = window.localStorage;
-    var usuario = JSON.parse(storage.getItem("usuario"));
-    return usuario;
+toastr.options = {
+	  "closeButton": false,
+	  "debug": false,
+	  "newestOnTop": true,
+	  "progressBar": true,
+	  "positionClass": "toast-bottom-center",
+	  "preventDuplicates": false,
+	  "onclick": null,
+	  "showDuration": "1000",
+	  "hideDuration": "1000",
+	  "timeOut": "1500",
+	  "extendedTimeOut": "1000",
+	  "showEasing": "swing",
+	  "hideEasing": "linear",
+	  "showMethod": "fadeIn",
+	  "hideMethod": "fadeOut"
 }
 
 function myToast(tipo, mensagem) {
-    $.toast({
-        text: mensagem, // Text that is to be shown in the toast
-
-        icon: tipo, // Type of toast icon
-        showHideTransition: 'slide', // fade, slide or plain
-        allowToastClose: false, // Boolean value true or false
-        hideAfter: 2000, // false to make it sticky or number representing the miliseconds as time after which toast needs to be hidden
-        stack: 5, // false if there should be only one toast at a time or a number representing the maximum number of toasts to be shown at a time
-        position: 'bottom-center', // bottom-left or bottom-right or bottom-center or top-left or top-right or top-center or mid-center or an object representing the left, right, top, bottom values
-
-
-
-        textAlign: 'left', // Text alignment i.e. left, right or center
-        loader: true, // Whether to show loader or not. True by default
-        loaderBg: '#9EC600', // Background color of the toast loader
-        beforeShow: function() {}, // will be triggered before the toast is shown
-        afterShown: function() {}, // will be triggered after the toat has been shown
-        beforeHide: function() {}, // will be triggered before the toast gets hidden
-        afterHidden: function() {} // will be triggered after the toast has been hidden
-    });
+	if(tipo == "success") {
+		toastr.success(mensagem);
+	} else if(tipo == "warning") {
+		toastr.warning(mensagem);
+	} else if(tipo == "info") {
+		toastr.info(mensagem);
+	} else if(tipo == "error") {
+		toastr.error(mensagem);
+	}
 }
 
 function myToastNoHide(tipo, mensagem) {
-    $.toast({
-        text: mensagem, // Text that is to be shown in the toast
-
-        icon: tipo, // Type of toast icon
-        showHideTransition: 'slide', // fade, slide or plain
-        allowToastClose: false, // Boolean value true or false
-        hideAfter: false, // false to make it sticky or number representing the miliseconds as time after which toast needs to be hidden
-        stack: 5, // false if there should be only one toast at a time or a number representing the maximum number of toasts to be shown at a time
-        position: 'bottom-center', // bottom-left or bottom-right or bottom-center or top-left or top-right or top-center or mid-center or an object representing the left, right, top, bottom values
-
-
-
-        textAlign: 'left', // Text alignment i.e. left, right or center
-        loader: true, // Whether to show loader or not. True by default
-        loaderBg: '#9EC600', // Background color of the toast loader
-        beforeShow: function() {}, // will be triggered before the toast is shown
-        afterShown: function() {}, // will be triggered after the toat has been shown
-        beforeHide: function() {}, // will be triggered before the toast gets hidden
-        afterHidden: function() {} // will be triggered after the toast has been hidden
-    });
+	myToast(tipo, mensagem);
 }
 
 function toastSuccess(mensagem) {
@@ -94,157 +57,231 @@ function toastWarning(mensagem) {
     myToast("warning", mensagem);
 }
 
-function validarCNPJ(cnpj) {
-
-    cnpj = cnpj.replace(/[^\d]+/g, '');
-
-    if (cnpj == '') return false;
-
-    if (cnpj.length != 14)
-        return false;
-
-    // Elimina CNPJs invalidos conhecidos
-    if (cnpj == "00000000000000" ||
-        cnpj == "11111111111111" ||
-        cnpj == "22222222222222" ||
-        cnpj == "33333333333333" ||
-        cnpj == "44444444444444" ||
-        cnpj == "55555555555555" ||
-        cnpj == "66666666666666" ||
-        cnpj == "77777777777777" ||
-        cnpj == "88888888888888" ||
-        cnpj == "99999999999999")
-        return false;
-
-    // Valida DVs
-    tamanho = cnpj.length - 2
-    numeros = cnpj.substring(0, tamanho);
-    digitos = cnpj.substring(tamanho);
-    soma = 0;
-    pos = tamanho - 7;
-    for (i = tamanho; i >= 1; i--) {
-        soma += numeros.charAt(tamanho - i) * pos--;
-        if (pos < 2)
-            pos = 9;
-    }
-    resultado = soma % 11 < 2 ? 0 : 11 - soma % 11;
-    if (resultado != digitos.charAt(0))
-        return false;
-
-    tamanho = tamanho + 1;
-    numeros = cnpj.substring(0, tamanho);
-    soma = 0;
-    pos = tamanho - 7;
-    for (i = tamanho; i >= 1; i--) {
-        soma += numeros.charAt(tamanho - i) * pos--;
-        if (pos < 2)
-            pos = 9;
-    }
-    resultado = soma % 11 < 2 ? 0 : 11 - soma % 11;
-    if (resultado != digitos.charAt(1))
-        return false;
-
-    return true;
-
-}
-
-function servidorGZCloud(cnpj) {
-    return cnpj + ".gzcloud.com.br";
-}
-
-function enderecoFormatado() {
-    var endereco = getEnderecoServidor();
-    if (validarCNPJ(endereco)) {
-        return endereco + ".gzcloud.com.br";
-    } else {
-        return endereco;
-    }
-}
-
-function obterDiasSemana(tipo) {
-    if (tipo == "cp") { // CP = RETORNA DIAS COMPLETO
-        return ["Domingo", "Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado"];
-    } else if (tipo == "sc") { // SC = RETORNA DIAS SUPER CURTO
-        return ["D", "S", "T", "Q", "Q", "S", "S"];
-    } else if (tipo == "ct") { // CT = RETORNA DIAS CURTO
-        return ["Dom", "Seg", "Ter", "Qua", "Qui", "Sex", "Sab"];
-    }
-}
-
-function obterNomeMeses(tipo) {
-    if (tipo == 'cp') {
-        return ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"];
-    } else if (tipo == 'ct') {
-        return ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"];
-    }
-}
-
-function guardarMeta(meta) {
-    var storage = window.localStorage;
-    storage.setItem("meta", JSON.stringify(meta));
-}
-
-function obterMeta() {
-    var storage = window.localStorage;
-    var meta = JSON.parse(storage.getItem("meta"));
-    return meta;
-}
-
-function guardarInicializacao(loja, tipo) {
-    var storage = window.localStorage;
-    storage.setItem("loja-init", JSON.stringify(loja));
-    storage.setItem("tipo-init", JSON.stringify(tipo));
-}
-
-function obterInicializacao(obj) {
-    var storage = window.localStorage;
-    if (obj == "loja") {
-        return JSON.parse(storage.getItem("loja-init"));
-    } else if (obj == "tipo") {
-        return JSON.parse(storage.getItem("tipo-init"));
-    }
-}
-
-function obterDataAtual() {
-    var data = new Date();
-    return String(("0" + data.getDate()).slice(-2)) + "/" + ("0" + (data.getMonth() + 1)).slice(-2) + "/" + String(data.getFullYear());
-}
-
-function obterDias(quantidade) {
-    return moment().subtract('days', quantidade).format('DD/MM/YYYY');
-}
-
-function valorEmReais(valor) {
-    return valor.toFixed(2).replace('.', ',').replace(/(\d)(?=(\d{3})+\,)/g, "$1.");
-}
-
-function checarVazio(valor) {
-    return !valor || !/[^\s]+/.test(valor);
-}
-
-function checarNegativo(valor) {
-    if (!((e.keyCode > 95 && e.keyCode < 106) ||
-            (e.keyCode > 47 && e.keyCode < 58) ||
-            e.keyCode == 8)) {
-        return false;
-    }
-}
-
-function primeiroAcesso() {
-	var msg = "<b><i> Parabéns! </i></b> Você agora pode começar a utilizar as funções que o GZ Flash te proporciona. Acompanhe agora, em real-time, as vendas de sua loja, estipule metas, etc. Comece já!<br>";
-	var msg2 = "<br><b><i> Caso precise de ajuda... </i></b> Você pode entrar em contato conosco pelo suporte@gzsistemas.com.br. Temos também telefone e você pode abrir um ticket. Confira o menu 'Sobre'.<br>";
-	var msg3 = "<br><b><i> ATENÇÃO! </i></b> É necessária a contratação do GZ Cloud ou linha Mercatto-E para utilização do PDV Mobile com integração do cadastro de produtos e gerenciamento de diversos dispositivos.";
-	
-	guardarInicializacao("", "SIL");
-	
-	if(true) {
-		bootbox.alert({
-			title: "Bem-vindo ao GZ Flash!",
-			message: msg + msg2 + msg3
-		});
+function getDiasSemana(tipo){
+	if(tipo == "cp") { // CP = RETORNA DIAS COMPLETO
+		return ["Domingo", "Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado"];
+	} else if(tipo == "sc") { // SC = RETORNA DIAS SUPER CURTO
+		return ["D", "S", "T", "Q", "Q", "S", "S"];
+	} else if(tipo == "ct") { // CT = RETORNA DIAS CURTO
+		return ["Dom", "Seg", "Ter", "Qua", "Qui", "Sex", "Sab"];
 	}
 }
 
-$(function() {
-    $("#txt-servidor").text(enderecoFormatado());
+function getNomeMeses(tipo){
+	if(tipo == 'cp') {
+		return ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"];
+	} else if(tipo == 'ct') {
+		return ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"];
+	}
+}
+
+function setMeta(meta){
+	var storage = window.localStorage;
+	storage.setItem("meta", JSON.stringify(meta));
+}
+
+function getMeta(){
+	var storage = window.localStorage;
+	var meta = JSON.parse(storage.getItem("meta"));
+	return meta;
+}
+
+function setInicializacao(loja, tipo){
+	var storage = window.localStorage;
+ 	storage.setItem("loja-init", JSON.stringify(loja));
+	storage.setItem("tipo-init", JSON.stringify(tipo));
+}
+
+function getInicializacao(obj){
+	var storage = window.localStorage;
+	if(obj == "loja"){
+		var loja = JSON.parse(storage.getItem("loja-init"));
+		return loja;
+	} else if(obj == "tipo"){
+		var tipo = JSON.parse(storage.getItem("tipo-init"));
+		return tipo;
+	}
+}
+
+function getDataAtual(){
+	var data = new Date();
+	return String(("0" + data.getDate()).slice(-2)) + "/" + ("0" + (data.getMonth() + 1)).slice(-2) + "/" + String(data.getFullYear());
+}
+
+function getDias(quantidade){
+	return moment().subtract('days', quantidade).format('DD/MM/YYYY');
+}
+
+function valorEmReais(valor){
+	return valor.toFixed(2).replace('.', ',').replace(/(\d)(?=(\d{3})+\,)/g, "$1.");
+}
+
+function checarVazio(valor){
+    return !valor || !/[^\s]+/.test(valor);
+}
+
+function checarNegativo(valor){
+	if(!((e.keyCode > 95 && e.keyCode < 106)
+      || (e.keyCode > 47 && e.keyCode < 58)
+      || e.keyCode == 8)) {
+        return false;
+    }
+}
+
+function removerAspas(strg){
+	var str = strg.replace(/"/g, "");
+	var string = str.replace(/^\s+|\s+$/g, "");
+	return string;
+}
+
+// Criação das novas funções que realizam o novo fluxo de login
+function getUser(){
+	var storage = window.localStorage;
+	var usuario = JSON.parse(storage.getItem("user"));
+	return usuario;
+}
+
+function setUser(user){
+	var storage = window.localStorage;
+	storage.setItem("user", JSON.stringify(user));
+}
+
+function getSenha(){
+	var storage = window.localStorage;
+	var senha = JSON.parse(storage.getItem("password"));
+	return senha;
+}
+
+function setSenha(senha){
+	var storage = window.localStorage;
+	storage.setItem("password", JSON.stringify(senha));
+}
+
+function getEmpresa(){
+	var storage = window.localStorage;
+	var empresa = JSON.parse(storage.getItem("empresa"));
+	return empresa;
+}
+
+function setEmpresa(empresa){
+	var storage = window.localStorage;
+	storage.setItem("empresa", JSON.stringify(empresa));
+}
+
+function getUrlbase(){
+	var storage = window.localStorage;
+	var url = JSON.parse(storage.getItem("urlbase"));
+	return url;
+}
+
+function setUrlbase(url){
+	var storage = window.localStorage;
+	storage.setItem("urlbase", JSON.stringify(url));
+}
+// O status serve para separar usuários cloud de usuários com servidor interno
+function getStatus(){
+	var storage = window.localStorage;
+	var status = JSON.parse(storage.getItem("status"));
+	return status;
+}
+
+function setStatus(status){
+	var storage = window.localStorage;
+	storage.setItem("status", JSON.stringify(status));
+}
+
+function getSSL(){
+	var storage = window.localStorage;
+	var ssl = JSON.parse(storage.getItem("ssl"));
+	return ssl;
+}
+
+function setSSL(ssl){
+	var storage = window.localStorage;
+	storage.setItem("ssl", JSON.stringify(ssl));
+}
+
+function getDataInicial(){
+	var storage = window.localStorage;
+	var data_inicial = JSON.parse(storage.getItem("data_inicial"));
+	return data_inicial;
+}
+
+function setDataInicial(data){
+	var storage = window.localStorage;
+	storage.setItem("data_inicial", JSON.stringify(data));
+}
+
+function getDataFinal(){
+	var storage = window.localStorage;
+	var data_final = JSON.parse(storage.getItem("data_final"));
+	return data_final;
+}
+
+function setDataFinal(data){
+	var storage = window.localStorage;
+	storage.setItem("data_final", JSON.stringify(data));
+}
+
+function logout(){
+	var storage = window.localStorage;
+	storage.removeItem("user");
+	storage.removeItem("ConecSeg");
+	storage.removeItem("empresa");
+	storage.removeItem("endereco-servidor");
+	storage.removeItem("password");
+	storage.removeItem("status");
+	storage.removeItem("urlbase");
+	storage.removeItem("ssl");
+}
+
+function gerarToken(){
+	var usr = getUser();
+	var senha = getSenha();
+	var token = criarToken(usr,senha);
+	return token;
+}
+
+function sleep(milliseconds) {
+  var start = new Date().getTime();
+  for (var i = 0; i < 1e7; i++) {
+    if ((new Date().getTime() - start) > milliseconds){
+      break;
+    }
+  }
+}
+
+/*
+	 Error Catch // -- Produção --
+
+	 Dados requisitados:
+	 - Nenhum;
+
+	 Dados resultantes:
+	 - Nenhum;
+
+	 OBS: Método retorna erros no console;
+*/
+
+window.addEventListener('error', function(event){
+
+		console.log("Erro de JS:");
+		console.log("Mensagem: " + event.message);
+		console.log("Em: " + event.filename);
+		console.log("Linha: " + event.lineno);
+
+		/*
+    var boxError = document.createElement( 'div' );
+    boxError.className  = 'box-error';
+
+    boxError.innerHTML  = '<h4>Erro de JS:</h4>';
+    boxError.innerHTML += '<p class="msg">'+ event.message +'</p>';
+    boxError.innerHTML += '<p>Em: '+ event.filename +'</p>';
+    boxError.innerHTML += '<p>Linha: '+ event.lineno +'</p>';
+
+    document.body.appendChild( boxError );
+		*/
+
+		toastError("Ooops... Algo deu errado!");
+    return false;
 });

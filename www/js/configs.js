@@ -30,14 +30,13 @@ function onLoad() {
   if(status == true){
     var usr = getUser();
     var senha = getSenha();
-    var empresa = getEmpresa();
+    //var empresa = getEmpresa();
     $("#txt-usuario-cloud").val(usr);
     $("#txt-senha-cloud").val(senha);
-    $("#txt-empresa").val(empresa);
-  } else{    
-    var empresa = getEmpresa();
+  } else{
+    //var empresa = getEmpresa();
     var url = getUrlbase();
-    $("#txt-empresa").val(empresa);
+    //$("#txt-empresa").val(empresa);
     $("#txt-url-base").val(url);
   }
 
@@ -46,33 +45,35 @@ function onLoad() {
 function guardar(){
   var user = $("#txt-usuario-cloud").val();
   var senha = $("#txt-senha-cloud").val();
-  var empresa = $("#txt-empresa").val();
-  var url = "http://homologacao.gzcloud.com.br/flex-e";
+  //var empresa = $("#txt-empresa").val();
+  var url = "https://homologacao.gzcloud.com.br";
   var status = true;
   setUser(user);
   setSenha(senha);
-  setEmpresa(empresa);
+  //setEmpresa(empresa);
   setUrlbase(url);
   setStatus(status);
   toastInfoNoHide("Configurações salvas!");
 }
 
 function salvar() {
+  /*
   if($("#txt-empresa").val() == ""){
     toastError("Empresa / Loja não pode ser nula!");
   } else {
+  */
     if($("#txt-usuario-cloud").val() == "" | $("#txt-senha-cloud").val() == ""){
       if($("#txt-url-base").val() == ""){
         toastError("Existem campos em branco!");
       } else{
         var user = "P7pNVB64vHuwt6V2Mr4u6hmj";
         var senha = "QufPbwujrvu2bYJyjRQYnAVp";
-        var empresa = $("#txt-empresa").val();
+        //var empresa = $("#txt-empresa").val();
         var url = $("#txt-url-base").val();
         var status = false;
         setUser(user);
         setSenha(senha);
-        setEmpresa(empresa);
+        //setEmpresa(empresa);
         setUrlbase(url);
         setStatus(status);
         setSSL(conexaoSegura);
@@ -89,7 +90,7 @@ function salvar() {
         confirmar();
       }
     }
-  }
+  //}
 }
 
 function confirmar() {

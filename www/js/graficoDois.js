@@ -44,7 +44,7 @@ function graficoDois() {
                 var pagamentos = $(dadosFlash.flash_venda_grafico_pagamento);
                 // ------------------------------------------------------------
 
-                if (resposta.extra.lista_flash_venda_grafico_pagamento.flash_venda_grafico_pagamento == null) {
+                if (resposta.extra.lista_flash_venda_grafico_pagamento.flash_venda_grafico_pagamento.length == 0) {
 
                     toastError("Não existem dados na data informada.");
 

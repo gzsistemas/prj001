@@ -46,7 +46,7 @@ function graficoUm() {
                 var caixas = $(dadosFlash.flash_venda_grafico_caixa);
                 // ------------------------------------------------------------
 
-                if (resposta.extra.lista_flash_venda_grafico_caixa.flash_venda_grafico_caixa == null) {
+                if (resposta.extra.lista_flash_venda_grafico_caixa.flash_venda_grafico_caixa.length == 0) {
 
                     toastError("Não existem dados na data informada.");
 

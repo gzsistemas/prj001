@@ -2,7 +2,7 @@ function pesquisar() {
 
   toastInfo("Validando Informações...");
 
-  if (!$("#txt-loja").val() || parseInt($("#txt-loja").val()) < 1 || parseInt($("#txt-loja").val()) > 999 || !$("#txt-data-inicial").val() || !$("#txt-data-final").val()) {
+  if (!$("#txt-loja").val() || parseInt($("#txt-loja").val()) < 1 || parseInt($("#txt-loja").val()) > 999 || !$("#txt-data-inicial").val() /*|| !$("#txt-data-final").val()*/) {
       toastError("Informações inválidas...");
       return;
   }
@@ -19,7 +19,7 @@ function pesquisar() {
 
   setDataInicial($("#txt-data-inicial").val());
 
-  setDataFinal($("#txt-data-final").val());
+  setDataFinal($("#txt-data-inicial").val());
 
   //-----------------------------------
   // Carrega as Divs principais -------
@@ -56,8 +56,8 @@ function onLoad() {
     }
     $("#txt-servidor").text(server);
     // Exibe endereço do usuário
-    var usuario = getEmpresa();
-    $("#txt-loja").val(usuario);
+    //var usuario = getEmpresa();
+    //$("#txt-loja").val(usuario);
 
     /*
 
@@ -86,7 +86,7 @@ function onLoad() {
     });
 
     // Inicializa dados padrão
-    $("#txt-loja").val(getInicializacao("loja"));    
+    $("#txt-loja").val(getInicializacao("loja"));
 
     var tipoinit = getInicializacao("tipo");
     if (tipoinit == "DIA") {

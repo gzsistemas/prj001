@@ -21,7 +21,6 @@ function login() {
   var ssl = getSSL();
   // Criação do token
   var token = gerarToken();
-
   // ------
   var URL = "";
   // Parte que decide qual url usar
